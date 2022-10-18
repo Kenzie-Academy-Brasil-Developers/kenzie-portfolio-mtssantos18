@@ -27,7 +27,7 @@ export const Project = (): JSX.Element => {
     const fetchData = async () => {
       const data: Response = await fetch(
         `https://api.github.com/users/${userData.githubUser}/repos`
-      )
+      );
 
       const json = await data.json();
 
@@ -55,22 +55,11 @@ export const Project = (): JSX.Element => {
             {repository.name}
           </Text>
 
-          {repository.language && (
-            <ProjectStack>
-              <Text type="body2">Linguagem:</Text>
-              <ProjectStackTech>
-                <Text color="brand1" type="body2">
-                  {repository.language}
-                </Text>
-              </ProjectStackTech>
-            </ProjectStack>
-          )}
-
           <Text type="body1" color="grey2">
             {repository.description}
           </Text>
           <ProjectLinks>
-            <ProjectLink target="_blank" href={repository.git_url}>
+            <ProjectLink target="_blank" href={repository.git_url.slice(4)}>
               <FaGithub /> Github Code
             </ProjectLink>
             {repository.homepage && (
